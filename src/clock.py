@@ -16,15 +16,20 @@ while True:
     m = t.tm_min
     s = t.tm_sec
 
-    print '%02d:%02d:%02d' % (h, m, s)
+    # print '%02d:%02d:%02d' % (h, m, s)
+
+    if i % 2 == 0:
+        timetable = '%02d.%02d'
+    else:
+        timetable = '%02d%02d'
 
     if switch:
-        Saks.digital_display.show('%02d.%02d' % (h, m))
+        Saks.digital_display.show(timetable % (h, m))
         Saks.ledrow.on_for_index(i % 8)
     else:
-        Saks.digital_display.show('%02d%02d' % (h, m))
+        Saks.digital_display.show(timetable % (h, m))
         Saks.ledrow.off_for_index(i % 8)
         i += 1
 
     switch = not switch
-    time.sleep(0.5)
+    time.sleep(0.25)
